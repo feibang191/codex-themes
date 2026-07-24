@@ -1,123 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
   <defs>
-    <!-- Background gradient -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1A1A2E"/>
-      <stop offset="100%" style="stop-color:#16213E"/>
-    </linearGradient>
-    
-    <!-- Panel 1 (blue) gradient -->
-    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4A90D9"/>
-      <stop offset="100%" style="stop-color:#357ABD"/>
-    </linearGradient>
-    
-    <!-- Panel 2 (coral) gradient -->
-    <linearGradient id="coralGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#FF6B6B"/>
-      <stop offset="100%" style="stop-color:#FF8E53"/>
-    </linearGradient>
-    
-    <!-- Panel 3 (purple) gradient -->
-    <linearGradient id="purpleGrad" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#9B59B6"/>
-      <stop offset="100%" style="stop-color:#8E44AD"/>
+    <!-- Background gradient: dark tech -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1024" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F0F1A"/>
+      <stop offset="50%" stop-color="#1A1A2E"/>
+      <stop offset="100%" stop-color="#16213E"/>
     </linearGradient>
 
-    <!-- Code bracket glow -->
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <!-- Blue glass panel -->
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4A9EFF"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+
+    <!-- Coral glass panel -->
+    <linearGradient id="coral" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF6B6B"/>
+      <stop offset="100%" stop-color="#EE4444"/>
+    </linearGradient>
+
+    <!-- Purple glass panel -->
+    <linearGradient id="purple" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+
+    <!-- Glow filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
 
-    <!-- Subtle shadow -->
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#000" flood-opacity="0.3"/>
+    <!-- Soft shadow -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+
+    <!-- Inner glow for the rim -->
+    <filter id="rim">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Subtle noise texture -->
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="2" numOctaves="1" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="gray"/>
+      <feBlend in="SourceGraphic" in2="gray" mode="multiply" result="textured"/>
+      <feComponentTransfer in="textured">
+        <feFuncA type="linear" slope="0.03"/>
+      </feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="textured" operator="over"/>
     </filter>
   </defs>
 
-  <!-- Rounded square background -->
-  <rect x="0" y="0" width="1024" height="1024" rx="224" ry="224" fill="url(#bgGrad)"/>
+  <!-- Background rounded square -->
+  <rect x="0" y="0" width="1024" height="1024" rx="224" ry="224" fill="url(#bg)"/>
   
-  <!-- Subtle inner border/glow -->
-  <rect x="8" y="8" width="1008" height="1008" rx="220" ry="220" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+  <!-- Subtle noise overlay -->
+  <rect x="0" y="0" width="1024" height="1024" rx="224" ry="224" fill="#FFF" opacity="0.02" filter="url(#noise)"/>
 
-  <!-- === Stylized 'S' Monogram === -->
+  <!-- Thin border/rim light -->
+  <rect x="6" y="6" width="1012" height="1012" rx="220" ry="220" fill="none" stroke="url(#blue)" stroke-width="1.5" opacity="0.15"/>
+  <rect x="12" y="12" width="1000" height="1000" rx="216" ry="216" fill="none" stroke="url(#coral)" stroke-width="0.5" opacity="0.08"/>
 
-  <!-- Panel 1: Top-left blue curve (the upper loop of the 'S') -->
-  <g filter="url(#shadow)" opacity="0.92">
-    <path d="M 340 280 
-             C 340 280, 280 340, 280 420 
-             C 280 500, 340 540, 420 540 
-             C 500 540, 560 500, 560 420 
-             C 560 370, 530 330, 490 310
-             C 450 290, 400 290, 370 310
-             C 350 325, 340 350, 345 380
-             C 350 400, 365 415, 385 420
-             C 400 425, 420 420, 430 410
-             C 440 400, 445 385, 440 370
-             C 435 355, 420 345, 405 345
-             C 390 345, 380 355, 380 365
-             C 380 375, 385 380, 390 380
-             C 395 380, 395 375, 390 370
-             " 
-          fill="url(#blueGrad)" opacity="0.85"/>
+  <!-- === STYLIZED 'S' MONOGRAM === -->
+  <!-- Three overlapping smooth geometric paths forming an 'S' shape -->
+
+  <g filter="url(#shadow)">
+    <!-- Upper loop (blue) - smooth flowing curve -->
+    <path d="M 320 280 
+             C 280 280, 240 320, 240 380 
+             C 240 440, 280 480, 360 480 
+             C 440 480, 480 440, 480 380 
+             C 480 340, 460 310, 420 290
+             C 400 280, 380 280, 360 290
+             C 340 300, 330 320, 335 345
+             C 340 360, 350 370, 365 375
+             C 380 380, 400 375, 410 365
+             C 420 355, 425 340, 420 330
+             C 415 320, 405 315, 395 315
+             C 385 315, 380 320, 380 328
+             C 380 335, 385 338, 390 338"
+          fill="url(#blue)" opacity="0.88"/>
   </g>
 
-  <!-- Panel 2: Bottom-right coral curve (the lower loop of the 'S') -->
-  <g filter="url(#shadow)" opacity="0.92">
-    <path d="M 584 504
-             C 584 504, 644 564, 644 644
-             C 644 724, 584 764, 504 764
-             C 424 764, 364 724, 364 644
-             C 364 594, 394 554, 434 534
-             C 474 514, 524 514, 554 534
-             C 574 549, 584 574, 579 604
-             C 574 624, 559 639, 539 644
-             C 524 649, 504 644, 494 634
-             C 484 624, 479 609, 484 594
-             C 489 579, 504 569, 519 569
-             C 534 569, 544 579, 544 589
-             C 544 599, 539 604, 534 604
-             C 529 604, 529 599, 534 594
-             " 
-          fill="url(#coralGrad)" opacity="0.85"/>
+  <g filter="url(#shadow)">
+    <!-- Lower loop (coral) - smooth flowing curve -->
+    <path d="M 544 544
+             C 584 544, 624 584, 624 644
+             C 624 704, 584 744, 504 744
+             C 424 744, 384 704, 384 644
+             C 384 604, 404 575, 444 555
+             C 464 545, 484 545, 504 555
+             C 524 565, 534 585, 529 610
+             C 524 625, 514 635, 499 640
+             C 484 645, 464 640, 454 630
+             C 444 620, 439 605, 444 590
+             C 449 575, 459 570, 469 570
+             C 479 570, 484 575, 484 583
+             C 484 590, 479 594, 474 594"
+          fill="url(#coral)" opacity="0.88"/>
   </g>
 
-  <!-- Panel 3: Purple connecting diagonal (the bridge of the 'S') -->
-  <g filter="url(#shadow)" opacity="0.92">
-    <path d="M 380 440 
-             C 380 440, 440 480, 480 520
-             C 520 560, 540 580, 540 600
-             C 540 620, 530 630, 510 630
-             C 490 630, 470 620, 460 610
-             C 450 600, 445 590, 445 580
-             C 445 570, 450 565, 460 565
-             C 470 565, 475 570, 475 580
-             C 475 590, 470 595, 465 595
-             " 
-          fill="url(#purpleGrad)" opacity="0.85"/>
+  <g filter="url(#shadow)">
+    <!-- Connecting bridge (purple) -->
+    <path d="M 335 420
+             C 370 440, 420 470, 460 510
+             C 500 550, 530 580, 530 610
+             C 530 630, 520 640, 505 640
+             C 490 640, 478 633, 470 622
+             C 462 611, 458 598, 460 585
+             C 462 572, 470 565, 480 565
+             C 490 565, 495 572, 493 580
+             C 491 588, 485 592, 480 592"
+          fill="url(#purple)" opacity="0.88"/>
   </g>
 
-  <!-- Code bracket { } integrated into the negative space -->
-  <g filter="url(#glow)" opacity="0.25">
-    <text x="512" y="555" font-family="'Courier New', 'SF Mono', monospace" 
-          font-size="180" font-weight="200" 
+  <!-- Code brackets {} - subtle glowing -->
+  <g filter="url(#glow)" opacity="0.15">
+    <text x="512" y="555" font-family="'SF Mono', 'Fira Code', 'Cascadia Code', monospace"
+          font-size="160" font-weight="300"
           text-anchor="middle" dominant-baseline="central"
-          fill="#FFFFFF" letter-spacing="60">
+          fill="#FFFFFF" letter-spacing="80">
       { }
     </text>
   </g>
 
-  <!-- Subtle decorative dots (floating particles like code) -->
-  <circle cx="220" cy="220" r="4" fill="#4A90D9" opacity="0.4"/>
-  <circle cx="800" cy="250" r="3" fill="#FF6B6B" opacity="0.3"/>
-  <circle cx="200" cy="750" r="5" fill="#9B59B6" opacity="0.35"/>
-  <circle cx="820" cy="780" r="3" fill="#4A90D9" opacity="0.25"/>
-  <circle cx="280" cy="500" r="2" fill="#FFFFFF" opacity="0.15"/>
-  <circle cx="740" cy="480" r="2" fill="#FFFFFF" opacity="0.15"/>
+  <!-- Floating accent dots -->
+  <circle cx="200" cy="200" r="3" fill="#4A9EFF" opacity="0.3"/>
+  <circle cx="824" cy="220" r="2.5" fill="#FF6B6B" opacity="0.25"/>
+  <circle cx="180" cy="780" r="3.5" fill="#A855F7" opacity="0.3"/>
+  <circle cx="830" cy="800" r="2" fill="#4A9EFF" opacity="0.2"/>
+  <circle cx="512" cy="200" r="2" fill="#FFF" opacity="0.1"/>
+  <circle cx="512" cy="824" r="2" fill="#FFF" opacity="0.08"/>
 </svg>
