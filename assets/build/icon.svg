@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A1A2E"/>
+      <stop offset="100%" style="stop-color:#16213E"/>
+    </linearGradient>
+    
+    <!-- Panel 1 (blue) gradient -->
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90D9"/>
+      <stop offset="100%" style="stop-color:#357ABD"/>
+    </linearGradient>
+    
+    <!-- Panel 2 (coral) gradient -->
+    <linearGradient id="coralGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF6B6B"/>
+      <stop offset="100%" style="stop-color:#FF8E53"/>
+    </linearGradient>
+    
+    <!-- Panel 3 (purple) gradient -->
+    <linearGradient id="purpleGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+
+    <!-- Code bracket glow -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtle shadow -->
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect x="0" y="0" width="1024" height="1024" rx="224" ry="224" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle inner border/glow -->
+  <rect x="8" y="8" width="1008" height="1008" rx="220" ry="220" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+
+  <!-- === Stylized 'S' Monogram === -->
+
+  <!-- Panel 1: Top-left blue curve (the upper loop of the 'S') -->
+  <g filter="url(#shadow)" opacity="0.92">
+    <path d="M 340 280 
+             C 340 280, 280 340, 280 420 
+             C 280 500, 340 540, 420 540 
+             C 500 540, 560 500, 560 420 
+             C 560 370, 530 330, 490 310
+             C 450 290, 400 290, 370 310
+             C 350 325, 340 350, 345 380
+             C 350 400, 365 415, 385 420
+             C 400 425, 420 420, 430 410
+             C 440 400, 445 385, 440 370
+             C 435 355, 420 345, 405 345
+             C 390 345, 380 355, 380 365
+             C 380 375, 385 380, 390 380
+             C 395 380, 395 375, 390 370
+             " 
+          fill="url(#blueGrad)" opacity="0.85"/>
+  </g>
+
+  <!-- Panel 2: Bottom-right coral curve (the lower loop of the 'S') -->
+  <g filter="url(#shadow)" opacity="0.92">
+    <path d="M 584 504
+             C 584 504, 644 564, 644 644
+             C 644 724, 584 764, 504 764
+             C 424 764, 364 724, 364 644
+             C 364 594, 394 554, 434 534
+             C 474 514, 524 514, 554 534
+             C 574 549, 584 574, 579 604
+             C 574 624, 559 639, 539 644
+             C 524 649, 504 644, 494 634
+             C 484 624, 479 609, 484 594
+             C 489 579, 504 569, 519 569
+             C 534 569, 544 579, 544 589
+             C 544 599, 539 604, 534 604
+             C 529 604, 529 599, 534 594
+             " 
+          fill="url(#coralGrad)" opacity="0.85"/>
+  </g>
+
+  <!-- Panel 3: Purple connecting diagonal (the bridge of the 'S') -->
+  <g filter="url(#shadow)" opacity="0.92">
+    <path d="M 380 440 
+             C 380 440, 440 480, 480 520
+             C 520 560, 540 580, 540 600
+             C 540 620, 530 630, 510 630
+             C 490 630, 470 620, 460 610
+             C 450 600, 445 590, 445 580
+             C 445 570, 450 565, 460 565
+             C 470 565, 475 570, 475 580
+             C 475 590, 470 595, 465 595
+             " 
+          fill="url(#purpleGrad)" opacity="0.85"/>
+  </g>
+
+  <!-- Code bracket { } integrated into the negative space -->
+  <g filter="url(#glow)" opacity="0.25">
+    <text x="512" y="555" font-family="'Courier New', 'SF Mono', monospace" 
+          font-size="180" font-weight="200" 
+          text-anchor="middle" dominant-baseline="central"
+          fill="#FFFFFF" letter-spacing="60">
+      { }
+    </text>
+  </g>
+
+  <!-- Subtle decorative dots (floating particles like code) -->
+  <circle cx="220" cy="220" r="4" fill="#4A90D9" opacity="0.4"/>
+  <circle cx="800" cy="250" r="3" fill="#FF6B6B" opacity="0.3"/>
+  <circle cx="200" cy="750" r="5" fill="#9B59B6" opacity="0.35"/>
+  <circle cx="820" cy="780" r="3" fill="#4A90D9" opacity="0.25"/>
+  <circle cx="280" cy="500" r="2" fill="#FFFFFF" opacity="0.15"/>
+  <circle cx="740" cy="480" r="2" fill="#FFFFFF" opacity="0.15"/>
+</svg>
