@@ -37,7 +37,7 @@ import {
   verifiedCdpEndpoint,
   waitForCdp,
   type CodexInstall,
-} from "./platform/codex-macos";
+} from "./platform/index";
 import { backupAppearanceKeys, restoreAppearanceKeys } from "./config/codex-config";
 import { SettingsStore } from "./settings";
 import { ThemeStore } from "./themes/store";
