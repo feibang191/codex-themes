@@ -38,11 +38,21 @@ mac:
   identity: null
 dmg:
   artifactName: Codex-Themes-${version}-mac-${arch}.${ext}
+win:
+  target:
+    - nsis
+    - portable
+  icon: assets/build/icon.png
+  artifactName: Codex-Themes-${version}-win-${arch}.${ext}
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
 artifactName: Codex-Themes-${version}-${os}-${arch}.${ext}
 npmRebuild: false
-# Auto-update feed. Packaged builds announce GitHub releases in the app;
-# unsigned macOS builds also expose the direct DMG fallback.
 publish:
   provider: github
-  owner: freestylefly
+  owner: feibang191
   repo: codex-themes
